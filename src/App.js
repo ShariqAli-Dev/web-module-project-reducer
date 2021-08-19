@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import { initialState, reducer } from "./reducers";
-import { addOne, applyNumber } from "./actions";
+import { addOne, applyNumber, changeOperation } from "./actions";
 import "./App.css";
 
 import TotalDisplay from "./components/TotalDisplay";
@@ -13,6 +13,11 @@ function App() {
   const handleApplyEvent = (number) => {
     dispatch(applyNumber(number));
   };
+
+  const handleOperatorEvent = (operator) => {
+    dispatch(changeOperation(operator));
+  };
+
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -106,9 +111,24 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={"+"} />
-              <CalcButton value={"*"} />
-              <CalcButton value={"-"} />
+              <CalcButton
+                onClick={() => {
+                  handleOperatorEvent("+");
+                }}
+                value={"+"}
+              />
+              <CalcButton
+                onClick={() => {
+                  handleOperatorEvent("*");
+                }}
+                value={"*"}
+              />
+              <CalcButton
+                onClick={() => {
+                  handleOperatorEvent("-");
+                }}
+                value={"-"}
+              />
             </div>
 
             <div className="row ce_button">
