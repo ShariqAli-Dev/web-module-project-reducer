@@ -26,8 +26,8 @@ export const setMemory = (currentTotal) => {
   return { type: SET_MEMORY, payload: currentTotal };
 };
 
-export const callMemory = () => {
-  return { type: CALL_MEMORY };
+export const callMemory = (currentMemoryValue) => {
+  return { type: CALL_MEMORY, payload: currentMemoryValue };
 };
 
 export const resetMemory = (resetValue) => {

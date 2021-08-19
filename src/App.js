@@ -6,6 +6,8 @@ import {
   changeOperation,
   clearDisplay,
   setMemory,
+  callMemory,
+  resetMemory,
 } from "./actions";
 import "./App.css";
 
@@ -14,7 +16,6 @@ import CalcButton from "./components/CalcButton";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log(state);
 
   const handleApplyEvent = (number) => {
     dispatch(applyNumber(number));
@@ -29,16 +30,15 @@ function App() {
   };
 
   const handleSetMemory = (currentTotal) => {
-    // console.log("I am setting the memory");
     dispatch(setMemory(currentTotal));
   };
 
   const handleCallMemory = () => {
-    return null;
+    dispatch(callMemory(state.memory));
   };
 
-  const handleRecallMemory = () => {
-    return null;
+  const handleResetlMemory = () => {
+    dispatch(resetMemory(0));
   };
 
   return (
@@ -72,13 +72,13 @@ function App() {
               />
               <CalcButton
                 onClick={() => {
-                  console.log("A click is happening");
+                  handleResetlMemory();
                 }}
                 value={"MR"}
               />
               <CalcButton
                 onClick={() => {
-                  console.log("A click is happening");
+                  handleCallMemory(state.memory);
                 }}
                 value={"MC"}
               />
@@ -87,7 +87,6 @@ function App() {
             <div className="row">
               <CalcButton
                 onClick={() => {
-                  // dispatch(addOne());
                   handleApplyEvent(1);
                 }}
                 value={1}

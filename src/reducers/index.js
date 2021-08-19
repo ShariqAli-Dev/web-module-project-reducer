@@ -56,6 +56,7 @@ export const reducer = (state, action) => {
     case SET_MEMORY:
       return {
         ...state,
+
         // put stuff here
         memory: action.payload,
       };
