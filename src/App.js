@@ -1,6 +1,12 @@
 import React, { useReducer } from "react";
 import { initialState, reducer } from "./reducers";
-import { addOne, applyNumber, changeOperation, clearDisplay } from "./actions";
+import {
+  addOne,
+  applyNumber,
+  changeOperation,
+  clearDisplay,
+  setMemory,
+} from "./actions";
 import "./App.css";
 
 import TotalDisplay from "./components/TotalDisplay";
@@ -20,6 +26,19 @@ function App() {
 
   const handleClearEvent = () => {
     dispatch(clearDisplay());
+  };
+
+  const handleSetMemory = (currentTotal) => {
+    // console.log("I am setting the memory");
+    dispatch(setMemory(currentTotal));
+  };
+
+  const handleCallMemory = () => {
+    return null;
+  };
+
+  const handleRecallMemory = () => {
+    return null;
   };
 
   return (
@@ -45,9 +64,24 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={"M+"} />
-              <CalcButton value={"MR"} />
-              <CalcButton value={"MC"} />
+              <CalcButton
+                onClick={() => {
+                  handleSetMemory(state.total);
+                }}
+                value={"M+"}
+              />
+              <CalcButton
+                onClick={() => {
+                  console.log("A click is happening");
+                }}
+                value={"MR"}
+              />
+              <CalcButton
+                onClick={() => {
+                  console.log("A click is happening");
+                }}
+                value={"MC"}
+              />
             </div>
 
             <div className="row">
